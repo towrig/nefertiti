@@ -15,13 +15,13 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
 
-  public static final RegistryObject<Block> ROCK_BLOCK = Registration.BLOCKS.register("rock", () -> new Block(sandstoneProperties()));
+  public static final RegistryObject<Block> SANDSTONE_STEPS = register("sandstone_steps", () -> new Block(sandstoneProperties()));
 
   static void register() {}
 
   private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block){
     //creates Block
-    RegistryObject<T> blockReg = Registration.BLOCKS.register("sandstone_steps", block);
+    RegistryObject<T> blockReg = Registration.BLOCKS.register(name, block);
 
     //creates Item representation of Block
     Registration.ITEMS.register(name, () -> new BlockItem(blockReg.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
@@ -30,6 +30,6 @@ public class ModBlocks {
   }
 
   private static AbstractBlock.Properties sandstoneProperties() {
-    return AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).func_235861_h_().hardnessAndResistance(0.8F);
+    return AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(0.8F);
   }
 }
