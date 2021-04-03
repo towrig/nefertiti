@@ -4,6 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.towrig.nefertiti.NefertitiMod;
+import net.towrig.nefertiti.data.blocks.ParseableBlock;
 import net.towrig.nefertiti.setup.ModBlocks;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -14,6 +15,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
   @Override
   protected void registerStatesAndModels() {
-    simpleBlock(ModBlocks.SANDSTONE_STEPS.get());
+    handleEasyBlocks();
+  }
+
+  private void handleEasyBlocks() {
+    for (ParseableBlock pb : ModBlocks.blocks.keySet()) {
+      simpleBlock(ModBlocks.blocks.get(pb).get());
+    }
   }
 }

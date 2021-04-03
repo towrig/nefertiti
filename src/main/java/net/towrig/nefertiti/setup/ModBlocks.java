@@ -1,25 +1,28 @@
 package net.towrig.nefertiti.setup;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
+import net.towrig.nefertiti.data.blocks.ParseableBlock;
+import net.towrig.nefertiti.data.blocks.SandstoneSteps;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModBlocks {
 
-  public static final RegistryObject<Block> SANDSTONE_STEPS = register("sandstone_steps", () -> new Block(sandstoneProperties()));
+  public static Map<ParseableBlock, RegistryObject<Block>> blocks;
 
-  static void register() {}
+  //add new blocks here.
+  static void register() {
+    blocks = new HashMap<>();
+    blocks.put(new SandstoneSteps(), register(new SandstoneSteps()));
+  }
 
-  private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block){
+  private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block) {
     //creates Block
     RegistryObject<T> blockReg = Registration.BLOCKS.register(name, block);
 
@@ -29,7 +32,14 @@ public class ModBlocks {
     return blockReg;
   }
 
-  private static AbstractBlock.Properties sandstoneProperties() {
-    return AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(0.8F);
+  private static RegistryObject<Block> register(ParseableBlock block) {
+    //creates Block
+    RegistryObject<Block> blockReg = Registration.BLOCKS.register(block.getName(), block.getSupplier());
+
+    //creates Item representation of Block
+    Registration.ITEMS.register(block.getName(), () -> new BlockItem(blockReg.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+
+    return blockReg;
   }
+
 }
