@@ -20,4 +20,8 @@ public abstract class ParseableBlock {
     return Tags.Blocks.SAND;
   }
 
+  public boolean dropSelf() {
+    return true;
+  }
+
 }

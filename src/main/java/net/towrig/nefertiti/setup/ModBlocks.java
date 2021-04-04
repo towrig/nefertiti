@@ -27,7 +27,7 @@ public class ModBlocks {
     RegistryObject<T> blockReg = Registration.BLOCKS.register(name, block);
 
     //creates Item representation of Block
-    Registration.ITEMS.register(name, () -> new BlockItem(blockReg.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+    Registration.ITEMS.register(name, () -> new BlockItem(blockReg.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));
 
     return blockReg;
   }
@@ -37,7 +37,7 @@ public class ModBlocks {
     RegistryObject<Block> blockReg = Registration.BLOCKS.register(block.getName(), block.getSupplier());
 
     //creates Item representation of Block
-    Registration.ITEMS.register(block.getName(), () -> new BlockItem(blockReg.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+    Registration.ITEMS.register(block.getName(), () -> new BlockItem(blockReg.get(), new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)));
 
     return blockReg;
   }

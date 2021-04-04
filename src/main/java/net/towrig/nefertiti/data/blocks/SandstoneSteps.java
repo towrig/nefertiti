@@ -16,7 +16,7 @@ public class SandstoneSteps extends ParseableBlock {
 
   @Override
   public Supplier<Block> getSupplier() {
-    return () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(0.8F));
+    return () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.SAND).strength(0.8F));
   }
 
 }

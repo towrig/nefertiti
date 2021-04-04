@@ -18,7 +18,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
   }
 
   @Override
-  protected void registerTags() {
+  protected void addTags() {
     copy(Tags.Blocks.SANDSTONE, Tags.Items.SANDSTONE);
   }
 }

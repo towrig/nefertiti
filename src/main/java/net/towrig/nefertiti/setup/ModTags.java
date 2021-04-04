@@ -13,22 +13,22 @@ public class ModTags {
   public static final class Blocks {
 
     private static ITag.INamedTag<Block> forge(String path){
-      return BlockTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
+      return BlockTags.bind(new ResourceLocation("forge", path).toString());
     }
 
     private static ITag.INamedTag<Block> mod(String path){
-      return BlockTags.makeWrapperTag(new ResourceLocation(NefertitiMod.MOD_ID, path).toString());
+      return BlockTags.bind(new ResourceLocation(NefertitiMod.MOD_ID, path).toString());
     }
   }
 
   public static final class Items {
 
     private static ITag.INamedTag<Item> forge(String path){
-      return ItemTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
+      return ItemTags.bind(new ResourceLocation("forge", path).toString());
     }
 
     private static ITag.INamedTag<Item> mod(String path){
-      return ItemTags.makeWrapperTag(new ResourceLocation(NefertitiMod.MOD_ID, path).toString());
+      return ItemTags.bind(new ResourceLocation(NefertitiMod.MOD_ID, path).toString());
     }
   }
 }

@@ -14,13 +14,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
   }
 
   @Override
-  protected void registerTags() {
+  protected void addTags() {
     registerEasyBlocks();
   }
 
   private void registerEasyBlocks() {
     for (ParseableBlock pb : ModBlocks.blocks.keySet()) {
-      getOrCreateBuilder(pb.getTag()).add(ModBlocks.blocks.get(pb).get());
+      tag(pb.getTag()).add(ModBlocks.blocks.get(pb).get());
     }
   }
 }
