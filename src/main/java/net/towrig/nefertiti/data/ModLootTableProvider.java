@@ -2,19 +2,23 @@ package net.towrig.nefertiti.data;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.loot.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
 import net.towrig.nefertiti.data.blocks.ParseableBlock;
 import net.towrig.nefertiti.setup.ModBlocks;
+import net.towrig.nefertiti.setup.Registration;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class ModLootTableProvider extends LootTableProvider {
 
@@ -38,6 +42,12 @@ public class ModLootTableProvider extends LootTableProvider {
             for (ParseableBlock pb : ModBlocks.blocks.keySet()) {
                 if (pb.dropSelf()) dropSelf(ModBlocks.blocks.get(pb).get());
             }
+        }
+        @Override
+        protected Iterable<Block> getKnownBlocks() {
+            return Registration.BLOCKS.getEntries().stream()
+              .map(RegistryObject::get)
+              .collect(Collectors.toList());
         }
     }
 }
